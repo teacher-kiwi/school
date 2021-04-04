@@ -10,4 +10,4 @@ app.get('/', (req, res) => {
 //   console.log(`Example app listening at http://localhost:${port}`)
 // })
 
-app.listten(process.env.PORT || 8080)
+app.listen(process.env.PORT || 8080)
