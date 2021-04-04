@@ -1,9 +1,9 @@
 {
   "name": "kiwi-school",
   "version": "14.16.0",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node main.js"
   },
   "dependencies": {
     "express": "^4.17.1"
