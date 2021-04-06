@@ -10,7 +10,7 @@ setInterval(function () {
 
 // app.get('/', (req, res) => {res.send('과연 될까?')})
 app.get('/', function(req, res){
-  return res.send('이것도 될까?')
+  return res.send('이것도 될까?ㅋㅋㅋ')
 });
 
 
