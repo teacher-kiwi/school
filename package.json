@@ -1,10 +1,11 @@
 {
   "name": "school",
   "version": "1.0.0",
-  "description": "",
+  "description": "-반갑습니다.\r -개발중입니다.",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sanitize-html": "^2.3.3"
   },
   "devDependencies": {},
   "scripts": {
@@ -12,5 +13,16 @@
     "start": "node index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teacher-kiwi/school.git"
+  },
+  "bugs": {
+    "url": "https://github.com/teacher-kiwi/school/issues"
+  },
+  "homepage": "https://github.com/teacher-kiwi/school#readme"
 }
