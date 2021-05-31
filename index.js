@@ -8,7 +8,7 @@ const template = require('./lib/template.js')
 
 app.get('/', function (request, response) {
   fs.readdir('data', function (error, filelist) {
-    var title = '안녕하세요?';
+    var title = '안녕하세요??';
     var description = 'Node.js로 게시판 만들기 연습입니다.';
     var list = template.list(filelist);
     var html = template.html(title, list,
