@@ -1,0 +1,13 @@
+type Data {
+    dataTime: String!
+    pm10Grade1h: Int!
+    pm25Grade1h: Int!
+    o3Grade: Int!
+    no2Grade: Int!
+    coGrade: Int!
+    so2Grade: Int!
+}
+
+type Query {
+    data: [Data]!
+}
