@@ -2,7 +2,12 @@ import { ApolloServer } from "apollo-server";
 import typeDefs from "./schema.js";
 import resolvers from "./resolvers.js";
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: true,
+  playground: true,
+});
 
 server.listen({ port: process.env.PORT || 4000 }).then(() => {
   console.log(`
