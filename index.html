@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <script type="text/babel">
+    const root = document.querySelector("#root");
+
+    const Form = () => {
+      const [id, setId] = React.useState("");
+      const [pw, setPw] = React.useState("");
+      const [msg, setMsg] = React.useState();
+
+      const changeHandle = (e) => {
+        e.target.name === "id" ? setId(e.target.value) : setPw(e.target.value);
+      };
+
+      const signupHandle = () => {
+        if (id == "" || pw == "") setMsg("ID와 PASSWORD를 입력하세요.");
+        else
+          fetch("/add", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id,
+              pw,
+            }),
+          })
+            .then((res) => res.text())
+            .then(setMsg);
+      };
+      const loginHandle = () => {
+        if (id == "" || pw == "") setMsg("ID와 PASSWORD를 입력하세요.");
+        else
+          fetch("/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id,
+              pw,
+            }),
+          })
+            .then((res) => res.text())
+            .then(setMsg);
+      };
+
+      return (
+        <React.Fragment>
+          <h2>회원가입&로그인 테스트</h2>
+          <h5>주의! 사용 중인 비밀번호를 입력하지 마세요!!</h5>
+          <input placeholder="ID" name="id" onChange={changeHandle} />
+          <br />
+          <input placeholder="PASSWORD" name="pw" onChange={changeHandle} />
+          <br />
+          <button onClick={loginHandle}>로그인</button>
+          <button onClick={signupHandle}>회원가입</button>
+
+          <div>{msg}</div>
+        </React.Fragment>
+      );
+    };
+
+    const Hello = () => {
+      return (
+        <div>
+          <Form />
+        </div>
+      );
+    };
+
+    ReactDOM.render(<Hello />, root);
+  </script>
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script
+    type=""
+    src="https://unpkg.com/babel-standalone/babel.min.js"
+  ></script>
+</html>
