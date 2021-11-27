@@ -90,7 +90,7 @@ MongoClient.connect(mongodb, { useUnifiedTopology: true }, (error, client) => {
   if (error) return console.log("ERROR!");
   db = client.db(process.env.MONGODB);
 
-  startApolloServer();
+  // startApolloServer();
   app.listen(process.env.PORT || 3000, () => {
     console.log("서버 가동!");
   });
