@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <script type="text/babel">
+    const root = document.querySelector("#root");
+    const Form = () => {
+      const [name, setName] = React.useState("");
+      const [school, setSchool] = React.useState([]);
+      const changeHandle = (e) => {
+        setName(e.target.value);
+      };
+      const btnHandle = (e) => {
+        e.preventDefault();
+        const query = `{
+          school(name: "${name}") {
+            SCHUL_NM
+            SCHUL_RDNMA
+            LTTUD
+            LGTUD
+          }
+        }`;
+
+        fetch("https://kiwi-school.herokuapp.com//graphql", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query }),
+        })
+          .then((res) => res.json())
+          .then((json) => setSchool(json.data.school));
+      };
+
+      return (
+        <React.Fragment>
+          <h1>학교 검색 시스템</h1>
+          <form>
+            <input
+              placeholder="학교 이름을 입력해주세요."
+              onChange={changeHandle}
+            />
+            <button onClick={btnHandle}>검색</button>
+          </form>
+          <ol>
+            {school.map((school) => (
+              <React.Fragment>
+                <li>{school.SCHUL_NM}</li>
+                <ul>
+                  <li>주소: {school.SCHUL_RDNMA}</li>
+                  <li>위도: {school.LTTUD}</li>
+                  <li>경도: {school.LGTUD}</li>
+                </ul>
+                <br />
+              </React.Fragment>
+            ))}
+          </ol>
+        </React.Fragment>
+      );
+    };
+
+    const Hello = () => {
+      return (
+        <div>
+          <Form />
+        </div>
+      );
+    };
+
+    ReactDOM.render(<Hello />, root);
+  </script>
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script
+    type=""
+    src="https://unpkg.com/babel-standalone/babel.min.js"
+  ></script>
+</html>
