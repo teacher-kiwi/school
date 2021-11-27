@@ -1,4 +1,4 @@
-const { ApolloServer } = require("apollo-server");
+import { ApolloServer } from "apollo-server";
 
 const typeDefs = `
   type Query {
