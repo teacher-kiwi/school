@@ -1,8 +1,16 @@
-const express = require("express");
-const app = express();
+const { ApolloServer } = require("apollo-server");
 
-app.get("/", (req, res) => {
-  res.sendFile(`${__dirname}/school.html`);
-});
+const typeDefs = `
+  type Query {
+    school: String
+  }
+    `;
 
-app.listen(process.env.PORT || 3000);
+const resolvers = {
+  Query: {
+    school: () => "abcd",
+  },
+};
+
+const server = new ApolloServer({ typeDefs, resolvers, playground: true });
+server.listen({ port: process.env.PORT || 3000 });
